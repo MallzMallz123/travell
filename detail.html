@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Detail Wisata</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ==== PERBAIKAN AGAR TOMBOL SAMA UKURAN & SIMETRIS ==== */
+    .btn-row{
+      display:flex;
+      gap:12px;
+      margin-top:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn, .btn-back{
+      flex:1;
+      text-align:center;
+      padding:12px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      display:inline-block;
+    }
+
+    .btn{
+      background:var(--accent);
+      color:#061324;
+      border:none;
+    }
+
+    .btn:hover{opacity:.9}
+
+    .btn-back{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.2);
+      color:white;
+    }
+
+    /* Efek klik */
+    .click-anim{transform:scale(0.96);transition:0.15s}
+  </style>
+</head>
+
+<body>
+  <div class="detail-container">
+    <div id="image" class="detail-img"></div>
+
+    <h1 id="title">Loading...</h1>
+
+    <div id="meta" class="meta"></div>
+    <div id="price" class="price"></div>
+
+    <div class="block">
+      <strong>Deskripsi:</strong>
+      <p id="deskripsi"></p>
+    </div>
+
+    <div class="block" style="display:flex;gap:12px;flex-wrap:wrap;">
+      <div style="flex:1">
+        <strong>Jam Operasional:</strong>
+        <p id="jam"></p>
+      </div>
+      <div style="flex:1">
+        <strong>Fasilitas:</strong>
+        <p id="fasilitas"></p>
+      </div>
+    </div>
+
+    <!-- TOMBOL SUDAH DISIMETRISKAN -->
+    <div class="btn-row">
+      <button class="btn" id="btnFav">Tambah ke Favorit</button>
+      <a id="btnMap" class="btn" target="_blank" rel="noopener">Lihat di Maps</a>
+      <a href="index.html" class="btn-back">← Kembali</a>
+    </div>
+  </div>
+
+<script>
+  // Efek klik pada tombol
+  function animateClick(el){
+    el.classList.add("click-anim");
+    setTimeout(()=> el.classList.remove("click-anim"), 180);
+  }
+
+  const btnMap = document.getElementById("btnMap");
+  btnMap.addEventListener("click", ()=> animateClick(btnMap));
+</script>
+
+<!-- global script (data wisata dan favorit) -->
+<script src="script.js"></script>
+
+<script>
+  // Ambil ID wisata dari URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const wisataId = parseInt(urlParams.get("id"));
+  const item = window.wisata.find(w => w.id === wisataId);
+
+  if (!item) {
+    document.getElementById("title").textContent = "Wisata tidak ditemukan!";
+  } else {
+    document.getElementById("image").style.backgroundImage = `url('${item.img}')`;
+    document.getElementById("title").textContent = item.nama;
+    document.getElementById("meta").textContent = `${item.lokasi} • ${item.kategori}`;
+    document.getElementById("price").textContent = "Harga tiket: " + item.harga;
+
+    document.getElementById("deskripsi").textContent = item.deskripsi || "-";
+    document.getElementById("jam").textContent = item.jam || "-";
+    document.getElementById("fasilitas").textContent = item.fasilitas || "-";
+    document.getElementById("btnMap").href = item.maps || "#";
+
+    const btnFav = document.getElementById("btnFav");
+    function updateFavButton(){
+      if(favorites.includes(item.id)){
+        btnFav.textContent = "Hapus dari Favorit";
+        btnFav.style.background = "#ff4747";
+      } else {
+        btnFav.textContent = "Tambah ke Favorit";
+        btnFav.style.background = "var(--accent)";
+      }
+    }
+
+    updateFavButton();
+
+    btnFav.onclick = ()=>{
+      toggleFavorite(item.id);
+      updateFavButton();
+      animateClick(btnFav);
+    };
+  }
+</script>
+
+</body>
+</html>

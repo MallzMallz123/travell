@@ -1,0 +1,157 @@
+:root{
+  --bg:#060b18;
+  --card:#0d1628;
+  --accent:#ff7a59;
+  --accent-soft:#ff9f83;
+  --glass:rgba(255,255,255,0.06);
+  --glass2:rgba(255,255,255,0.03);
+  --muted:#93a0b5;
+  --text:#e9eef9;
+  font-family: Inter, "Segoe UI", sans-serif;
+}
+
+
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:linear-gradient(160deg,#050a16,#0f1b34 70%);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  font-family: Inter, "Segoe UI", sans-serif;
+}
+
+/* HEADER */
+.header-fx{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:20px 28px;
+}
+
+/* STYLE TOMBOL DETAIL */
+.btn {
+  background: var(--accent);
+  color: #0e0e0e;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: Inter, "Segoe UI", sans-serif;
+  transition: 0.18s;
+  box-shadow: 0 6px 18px rgba(255,122,89,0.25);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* warna ketika ditekan */
+.btn:active {
+  transform: scale(0.97);
+  background: var(--accent-soft);
+}
+
+/* tombol favorit aktif */
+.btn.fav-active {
+  background: #ffd18a;
+  color: #000;
+}
+
+/* tombol Maps diklik → berubah */
+.btn.map-active {
+  background: #7ad3ff;
+  color: #000;
+}
+
+/* tombol kembali diseragamkan */
+.btn-back {
+  font-family: Inter, "Segoe UI", sans-serif;
+  display: inline-block;
+  padding: 11px 18px !important;
+  border-radius: 12px;
+  background: #ffffff22;
+  border: 1px solid #ffffff33;
+  color: var(--text);
+  text-decoration: none;
+  transition: 0.15s;
+}
+
+.btn-back:hover {
+  background: #ffffff33;
+  transform: translateY(-2px);
+}
+
+.btn-back:active {
+  background: #ffffff55;
+  transform: scale(0.97);
+}
+
+/* Merapikan container tombol */
+.action-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.logo{
+  width:56px;height:56px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-soft));
+  display:flex;align-items:center;justify-content:center;font-weight:700;color:#061324;font-size:18px;
+  box-shadow:0 0 20px rgba(255,122,89,0.35);
+}
+.credit{opacity:.7;font-size:13px;color:var(--muted)}
+
+/* CONTAINER */
+.container{
+  max-width:1100px;margin:20px auto;padding:0 20px 40px;
+}
+.fade-in{animation:fadeIn .6s ease forwards}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* SEARCH */
+.controls{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+.search{flex:1;display:flex;align-items:center;border:1px solid var(--glass);background:rgba(255,255,255,0.03);border-radius:12px;padding:6px 10px}
+.search input{flex:1;background:transparent;border:none;outline:none;padding:10px;color:var(--text)}
+.icon{margin-right:8px;opacity:.7}
+
+/* BUTTONS */
+.btn{
+  background:var(--accent);color:#0e0e0e;border:none;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer;
+  transition:0.15s;box-shadow:0 6px 18px rgba(255,122,89,0.18)
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.secondary{background:transparent;border:1px solid var(--glass);color:var(--muted);box-shadow:none}
+.small{padding:7px 10px;font-size:13px}
+.btn-back{display:inline-block;margin-top:10px;background:#ffffff22;padding:8px 12px;border-radius:8px;color:#fff;border:1px solid #ffffff33;text-decoration:none}
+
+/* GRID / CARD */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{background:var(--card);padding:12px;border-radius:14px;border:1px solid var(--glass2);position:relative;transition:0.2s}
+.card:hover{transform:translateY(-6px)}
+.thumb{height:170px;border-radius:12px;background-size:cover;background-position:center;margin-bottom:12px}
+.title{font-weight:700;margin-bottom:6px;font-size:17px}
+.meta{color:var(--muted);font-size:13px}
+.actions{display:flex;gap:10px;margin-top:12px}
+
+/* FAVORITE PANEL */
+.fav-panel{position:fixed;inset:0;background:rgba(0,0,0,0.65);display:none;align-items:center;justify-content:center;z-index:999;animation:fadeIn .2s ease}
+.fav-content{width:380px;max-height:80vh;overflow-y:auto;border-radius:14px;padding:20px;background:var(--card);border:1px solid var(--glass);box-shadow:0 10px 28px rgba(0,0,0,0.5)}
+.fav-item{background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;border:1px solid var(--glass2);margin-bottom:10px}
+.fav-item-title{font-weight:600;margin-bottom:4px}
+
+/* DETAIL PAGE */
+.detail-container{max-width:900px;margin:40px auto;padding:20px;background:rgba(255,255,255,0.05);border-radius:14px;backdrop-filter:blur(10px)}
+.detail-img{width:100%;height:300px;border-radius:14px;background-size:cover;background-position:center;margin-bottom:18px}
+.block{margin-top:14px;padding:12px;background:rgba(255,255,255,0.03);border-radius:10px}
+.price{font-size:16px;color:#ffd18a;margin-top:8px}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .detail-container{margin:20px;padding:16px}
+}

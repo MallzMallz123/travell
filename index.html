@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Liburan Neng Endi — Rekomendasi Wisata Jawa Timur</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header-fx">
+    <div class="brand">
+      <div class="logo neon">LN</div>
+      <div>
+        <h1>Liburan Neng Endi</h1>
+        <p class="lead">Aplikasi pencarian destinasi wisata Jawa Timur</p>
+      </div>
+    </div>
+    <div style="flex:1"></div>
+    <div class="credit"></div>
+  </header>
+
+  <div class="container fade-in">
+    <div class="controls">
+      <div class="search">
+        <span class="icon">🔍</span>
+        <input id="q" placeholder="Cari destinasi (misal:museum, pantai, gunung)..." />
+      </div>
+
+      <button class="btn secondary small ripple" id="viewSavedBtn">List Favorit</button>
+    </div>
+
+    <main>
+      <section style="width:100%">
+        <div class="grid fade-list" id="cards"></div>
+      </section>
+    </main>
+
+    <footer>
+      Daftar destinasi bersumber dari pengetahuan umum — foto Unsplash/Wikimedia.
+    </footer>
+  </div>
+
+  <!-- FAVORIT PANEL -->
+  <div id="favPanel" class="fav-panel" aria-hidden="true">
+    <div class="fav-content glass">
+      <h2>Wisata Favorit</h2>
+      <p class="meta">Destinasi yang kamu simpan</p>
+      <div id="favList"></div>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button id="closeFav" class="btn secondary" style="flex:1">Tutup</button>
+        <button id="clearFav" class="btn secondary" style="flex:1">Hapus Semua</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
